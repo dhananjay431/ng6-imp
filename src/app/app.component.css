@@ -1,0 +1,13 @@
+.hide{
+display: none;
+}
+.show{
+	display: block;
+}
+
+.list{
+  list-style-type: none;
+}
+.item{
+	color:red;
+}

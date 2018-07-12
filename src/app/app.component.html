@@ -1,0 +1,160 @@
+
+<!-- <btable *ngFor="let d of data" [nodes]="d.child">
+  {{d.name}}
+  <btable *ngIf="d.child.length>0" [nodes]="d.child"></btable>
+</btable> -->
+<!-- <pre>
+{{ dataContext | json }}
+</pre> -->
+<!-- <button (click)="show(data)"> click me</button>
+<table *ngFor="let d of dataContext">
+  <tr><td (click)=show(d)>{{d.name}}</td> <td>{{ d.id}} </td></tr>
+  <table *ngFor="let d2 of d.child" [ngClass]="{'show':!d.flag,'hide':d.flag}">
+    <tr><td (click)=show(d2) >{{d2.name}}</td> <td>{{ d2.id}} </td></tr>
+      <table *ngFor="let d3 of d2.child" [ngClass]="{'show':!d2.flag,'hide':d2.flag}">
+        <tr><td (click)=show(d3) >{{d3.name}}</td> <td>{{ d3.id}} </td></tr>
+      </table>
+    </table>
+</table> -->
+
+<ul class="list" *ngFor="let d of dataContext">
+      <i class="fas fa-angle-right" *ngIf="!d.flag" (click)=show(d)></i> 
+      <i class="fas fa-angle-down" *ngIf="d.flag" (click)=show(d)></i>
+    <li class="item"> 
+    name:-{{d.name}} id:-{{ d.id}}</li>
+  <ul class="list" *ngFor="let d2 of d.child" [ngClass]="{'show':d.flag,'hide':!d.flag}">
+
+          <i class="fas fa-angle-right" *ngIf="!d2.flag" (click)=show(d2)></i> 
+          <i class="fas fa-angle-down" *ngIf="d2.flag" (click)=show(d2)></i>
+      <li class="item" (click)=show(d2) >  name:-{{d2.name}}  id:-{{ d2.id}}</li> 
+      <ul class="list" *ngFor="let d3 of d2.child" [ngClass]="{'show':d2.flag,'hide':!d2.flag}">
+          <i class="fas fa-angle-right" *ngIf="!d3.flag" (click)=show(d3)></i> 
+          <i class="fas fa-angle-down" *ngIf="d3.flag" (click)=show(d3)></i>
+          <li class="item" (click)=show(d3) >  name:-{{d3.name}}  id:-{{ d3.id}}</li> 
+      </ul>
+    </ul>
+</ul>
+
+
+
+<ul class="list" *ngFor="let d of dataContext">
+    <li class="item">
+    <i class="fas fa-angle-right" *ngIf="!d.flag" (click)=show(d)></i> 
+      <i class="fas fa-angle-down" *ngIf="d.flag" (click)=show(d)></i> 
+    name:-{{d.name}} id:-{{ d.id}}</li>
+  <ul class="list" *ngFor="let d2 of d.child" [ngClass]="{'show':d.flag,'hide':!d.flag}">
+
+          
+      <li class="item">
+      <i class="fas fa-angle-right" *ngIf="!d2.flag" (click)=show(d2)></i> 
+      <i class="fas fa-angle-down" *ngIf="d2.flag" (click)=show(d2)></i>
+            name:-{{d2.name}}  id:-{{ d2.id}}
+      </li> 
+      <ul class="list" *ngFor="let d3 of d2.child" [ngClass]="{'show':d2.flag,'hide':!d2.flag}">
+          
+          <li class="item">
+          <i class="fas fa-angle-right" *ngIf="!d3.flag" (click)=show(d3)></i> 
+          <i class="fas fa-angle-down" *ngIf="d3.flag" (click)=show(d3)></i>
+            name:-{{d3.name}}  id:-{{ d3.id}}</li> 
+      </ul>
+    </ul>
+</ul>
+
+
+<ul class="list" *ngFor="let d of dataContext">
+  <li>
+    <table border=1>
+      <tr>
+        <td>
+          <i class="fas fa-angle-right" *ngIf="!d.flag" (click)=show(d)></i>
+          <i class="fas fa-angle-down" *ngIf="d.flag" (click)=show(d)></i>
+        </td>
+        <td>
+          {{d.name}}
+        </td>
+        <td>
+          {{ d.id}}
+        </td>
+      </tr>
+    </table>
+  </li>
+  <ul class="list" *ngFor="let d2 of d.child" [ngClass]="{'show':d.flag,'hide':!d.flag}">
+
+
+    <li>
+      <table border=1>
+        <tr>
+          <td>
+            <i class="fas fa-angle-right" *ngIf="!d2.flag" (click)=show(d2)></i>
+            <i class="fas fa-angle-down" *ngIf="d2.flag" (click)=show(d2)></i>
+          </td>
+          <td>
+            {{d2.name}}
+          </td>
+          <td>
+            {{ d2.id}}
+          </td>
+        </tr>
+      </table>
+
+    </li>
+    <ul class="list" *ngFor="let d3 of d2.child" [ngClass]="{'show':d2.flag,'hide':!d2.flag}">
+
+      <li>
+        <table border=1>
+          <tr>
+            <td>
+              <i class="fas fa-angle-right" *ngIf="!d3.flag" (click)=show(d3)></i>
+              <i class="fas fa-angle-down" *ngIf="d3.flag" (click)=show(d3)></i>
+            </td>
+            <td>
+              {{d3.name}}
+            </td>
+            <td>
+              {{ d3.id}}
+            </td>
+          </tr>
+        </table>
+
+      </li>
+    </ul>
+  </ul>
+</ul>
+
+
+  <ng-container *ngTemplateOutlet="asd; context: myContext"></ng-container> 
+   <ng-container *ngTemplateOutlet="zxc; context: myContext"></ng-container>
+
+<ng-template #asd  let-d="localSk">
+  call asd {{d}}
+</ng-template>
+
+<ng-template #zxc  let-d="localSk">
+  call zxc {{d}}
+</ng-template>
+
+
+<ng-template #temp let-td="child">
+  <ul *ngFor="let d of td">
+   <li>{{d.name}}
+  <ng-container *ngTemplateOutlet="temp;context:d"></ng-container>   
+</li>
+  </ul>
+</ng-template>
+
+
+<ul *ngFor="let d of dataContext">
+  <li>{{d.name}}
+  <ng-container *ngTemplateOutlet="temp;context:d"></ng-container>   
+</li>
+  
+  
+</ul>
+
+
+<!-- <div *ngIf="true then asd else zxc">
+  
+</div> -->
+
+<router-outlet></router-outlet>
+
